@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+const tailwindConfig = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,10 +8,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: {
+          light: "var(--primary-light)", // Fundo secundário no modo claro
+          dark: "var(--primary-dark)", // Fundo secundário no modo escuro
+        },
+        feature: "var(--feature)", // Vermelho constante para destaque
+        aux: {
+          light: "var(--text-light)", // Texto no modo claro
+          dark: "var(--text-dark)", // Texto no modo escuro
+        },
       },
     },
   },
+  darkMode: "class",
   plugins: [],
 };
+
+export default tailwindConfig;
