@@ -57,7 +57,7 @@ export function Hero() {
               <Image
               width={300}
               height={300}
-                src="/images/deilton.jpg" // Caminho relativo a pasta public
+                src="https://i.ibb.co/4Z3B3tGN/Deilton.jpg" // Caminho relativo a pasta public
                 alt="Deilton Pedro Junior"
                 className="absolute inset-4 rounded-full object-cover border-4 border-background shadow-xl"
               />
