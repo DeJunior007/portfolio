@@ -35,12 +35,11 @@ export function Projects() {
       githubUrl: "#"
     },
     {
-      title: "Real Estate Platform",
-      description: "A property listing and management platform with advanced search and filtering capabilities.",
-      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80",
-      tags: ["Next.js", "Firebase", "PostgreSQL", "Google Maps API"],
-      liveUrl: "#",
-      githubUrl: "#"
+      title: "Movie Catalog Platform",
+      description: "A movie catalog platform built with Vue.js, Axios, and TMDb API, allowing users to search, filter, and explore movies with detailed information.",      image: "https://i.ibb.co/SD2jW8yf/Captura-de-tela-2025-03-03-233722.png",
+      tags: ["Vue.js", "Axios", "TypeScript"],
+      liveUrl: "https://movie-catalog-sable.vercel.app/",
+      githubUrl: "https://github.com/DeJunior007/movie-catalog"
     },
   ];
 
