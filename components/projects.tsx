@@ -52,43 +52,80 @@ const tagVariants = {
 };
 
 export function Projects() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
-  const projects = [
-    {
-      title: "NG Promotora — Desenvolvedor de Software",
-      description:
-        "APIs em Laravel/PHP e TypeScript (React/Next) para sistemas internos, com filas (Horizon), webhooks e dashboards em SQL. Fluxo de simulacoes em background e WebSocket para retorno em tempo real.",
-      image:
-        "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1400&q=80",
-      tags: ["Laravel/PHP", "TypeScript", "Queues/Horizon", "WebSocket", "SQL"],
-      liveUrl: "mailto:deiltonp74@gmail.com",
-      githubUrl: "https://github.com/DeJunior007",
-      highlight: "API central de integracao financeira com simulacoes em background.",
-    },
-    {
-      title: "SmartCal — Case pessoal",
-      description:
-        "Orquestracao de LLM + visao para ler fotos/textos e responder via WhatsApp. Uso de webhooks, filas e Supabase para historico.",
-      image:
-        "https://www.smartcal.com.br/_next/static/media/whatsapp-screenshot.df6812ab.jpg",
-      tags: ["Next.js", "TypeScript", "LLM", "Vision AI", "Supabase", "Webhooks"],
-      liveUrl: "https://www.smartcal.com.br/",
-      githubUrl: "https://github.com/DeJunior007",
-      highlight: "IA de visao + LLM com resposta em segundos.",
-    },
-    {
-      title: "Experiencias anteriores",
-      description:
-        "MSI Solucoes (APIs em PHP/Laravel, PL/pgSQL, integracoes ERP) e Assert Tech (Next.js, Node.js, consumo de APIs REST). Estagios com foco em entregas incrementais e estabilidade.",
-      image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80",
-      tags: ["PHP/Laravel", "PostgreSQL", "Node.js", "Next.js", "APIs REST"],
-      liveUrl: "https://www.linkedin.com/in/deilton-pedro/",
-      githubUrl: "https://github.com/DeJunior007",
-      highlight: "Integrações ERP, PL/pgSQL e consumo de APIs REST.",
-    },
-  ];
+  const projects =
+    language === "en-US"
+      ? [
+          {
+            title: "NG Promotora — Software Developer",
+            description:
+              "Laravel/PHP and TypeScript (React/Next) APIs for internal systems, with queues (Horizon), webhooks and SQL dashboards. Simulations run in background and notify via WebSocket in real time.",
+            image:
+              "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1400&q=80",
+            tags: ["Laravel/PHP", "TypeScript", "Queues/Horizon", "WebSocket", "SQL"],
+            liveUrl: "mailto:deiltonp74@gmail.com",
+            githubUrl: "https://github.com/DeJunior007",
+            highlight: "Central integration API with background simulations and WebSocket updates.",
+          },
+          {
+            title: "SmartCal — Personal case",
+            description:
+              "LLM + vision orchestration to read photos/text and reply via WhatsApp. Uses webhooks, queues and Supabase for history.",
+            image:
+              "https://www.smartcal.com.br/_next/static/media/whatsapp-screenshot.df6812ab.jpg",
+            tags: ["Next.js", "TypeScript", "LLM", "Vision AI", "Supabase", "Webhooks"],
+            liveUrl: "https://www.smartcal.com.br/",
+            githubUrl: "https://github.com/DeJunior007",
+            highlight: "Vision + LLM response in seconds.",
+          },
+          {
+            title: "Previous experience",
+            description:
+              "MSI Solucoes (PHP/Laravel APIs, PL/pgSQL, ERP integrations) and Assert Tech (Next.js, Node.js, REST APIs). Internships focused on incremental delivery and stability.",
+            image:
+              "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80",
+            tags: ["PHP/Laravel", "PostgreSQL", "Node.js", "Next.js", "REST APIs"],
+            liveUrl: "https://www.linkedin.com/in/deilton-pedro/",
+            githubUrl: "https://github.com/DeJunior007",
+            highlight: "ERP integrations, PL/pgSQL and REST API consumption.",
+          },
+        ]
+      : [
+          {
+            title: "NG Promotora — Desenvolvedor de Software",
+            description:
+              "APIs em Laravel/PHP e TypeScript (React/Next) para sistemas internos, com filas (Horizon), webhooks e dashboards em SQL. Fluxo de simulacoes em background e WebSocket para retorno em tempo real.",
+            image:
+              "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1400&q=80",
+            tags: ["Laravel/PHP", "TypeScript", "Queues/Horizon", "WebSocket", "SQL"],
+            liveUrl: "mailto:deiltonp74@gmail.com",
+            githubUrl: "https://github.com/DeJunior007",
+            highlight: "API central de integracao financeira com simulacoes em background.",
+          },
+          {
+            title: "SmartCal — Case pessoal",
+            description:
+              "Orquestracao de LLM + visao para ler fotos/textos e responder via WhatsApp. Uso de webhooks, filas e Supabase para historico.",
+            image:
+              "https://www.smartcal.com.br/_next/static/media/whatsapp-screenshot.df6812ab.jpg",
+            tags: ["Next.js", "TypeScript", "LLM", "Vision AI", "Supabase", "Webhooks"],
+            liveUrl: "https://www.smartcal.com.br/",
+            githubUrl: "https://github.com/DeJunior007",
+            highlight: "IA de visao + LLM com resposta em segundos.",
+          },
+          {
+            title: "Experiencias anteriores",
+            description:
+              "MSI Solucoes (APIs em PHP/Laravel, PL/pgSQL, integracoes ERP) e Assert Tech (Next.js, Node.js, consumo de APIs REST). Estagios com foco em entregas incrementais e estabilidade.",
+            image:
+              "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80",
+            tags: ["PHP/Laravel", "PostgreSQL", "Node.js", "Next.js", "APIs REST"],
+            liveUrl: "https://www.linkedin.com/in/deilton-pedro/",
+            githubUrl: "https://github.com/DeJunior007",
+            highlight: "Integracoes ERP, PL/pgSQL e consumo de APIs REST.",
+          },
+        ];
 
   return (
     <section id="projects" className="relative py-24 md:py-28 overflow-hidden">
@@ -264,3 +301,4 @@ export function Projects() {
     </section>
   );
 }
+

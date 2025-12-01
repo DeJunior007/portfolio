@@ -7,14 +7,38 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 export function Hero() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
-  const highlightPills = [
-    "Backend + arquitetura",
-    "Node.js / TypeScript / SQL",
-    "Laravel/PHP + filas",
-    "Disponivel full-time",
-  ];
+  const copy = {
+    "pt-BR": {
+      role: "Desenvolvedor de Software (Fullstack)",
+      description:
+        "Entrego APIs e front alinhados. TypeScript/Node.js e Laravel/PHP no back; React/Next no front; integracoes com webhooks/filas e WebSocket. Case: API financeira com simulacoes em background e retorno em tempo real.",
+      pills: [
+        "Fullstack (React/Next + Node/PHP)",
+        "APIs, Webhooks, WebSocket",
+        "Filas (Horizon) e automacoes",
+        "Disponivel full-time",
+      ],
+      casesCta: "Ver projetos",
+      badge: "Candidato fullstack",
+    },
+    "en-US": {
+      role: "Software Engineer (Fullstack)",
+      description:
+        "Aligned APIs and frontend. TypeScript/Node.js and Laravel/PHP on backend; React/Next on frontend; webhooks/queues and WebSocket. Case: financial integration API with background simulations and real-time updates.",
+      pills: [
+        "Fullstack (React/Next + Node/PHP)",
+        "APIs, Webhooks, WebSocket",
+        "Queues (Horizon) and automation",
+        "Open to full-time",
+      ],
+      casesCta: "See projects",
+      badge: "Fullstack candidate",
+    },
+  } as const;
+
+  const current = copy[language];
 
   return (
     <section
@@ -38,7 +62,7 @@ export function Hero() {
               <div className="flex items-center gap-2 mb-4 relative">
                 <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
                   <Sparkles className="h-4 w-4" />
-                  Candidato backend
+                  {current.badge}
                 </div>
                 <span className="hidden md:inline-flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
               </div>
@@ -49,10 +73,10 @@ export function Hero() {
                 Deilton Pedro Junior
               </h1>
               <h3 className="text-2xl md:text-3xl font-semibold text-muted-foreground mb-6 relative">
-                Engenheiro de Software focado em backend
+                {current.role}
               </h3>
               <p className="text-lg text-muted-foreground mb-8 max-w-xl relative">
-                Entrego servicos confiaveis, APIs bem desenhadas e integracoes seguras. Experiencia em TypeScript/Node.js e Laravel/PHP, bancos relacionais, filas (Horizon) e WebSocket. Ja liderei integracoes financeiras com simulacao em background e retorno em tempo real.
+                {current.description}
               </p>
               <div className="flex flex-wrap gap-4 relative">
                 <Button size="lg" asChild>
@@ -61,7 +85,7 @@ export function Hero() {
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
-                  <a href="#projects">Ver cases</a>
+                  <a href="#projects">{current.casesCta}</a>
                 </Button>
                 <Button size="lg" variant="ghost" asChild className="backdrop-blur border border-white/10 bg-white/5">
                   <a
@@ -74,7 +98,7 @@ export function Hero() {
                 </Button>
               </div>
               <div className="mt-6 flex flex-wrap gap-3 text-sm text-muted-foreground relative">
-                {highlightPills.map((pill) => (
+                {current.pills.map((pill) => (
                   <span
                     key={pill}
                     className="rounded-full border border-white/10 bg-white/5 px-3 py-1 backdrop-blur"

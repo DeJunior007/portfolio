@@ -9,44 +9,82 @@ import {
 } from 'lucide-react';
 
 export function Skills() {
-  const { t } = useLanguage();
+  const { language } = useLanguage();
 
-  const skillCategories = [
-    {
-      icon: <Server className="h-8 w-8 text-primary" />,
-      title: "Backend Core",
-      skills: [
-        { name: 'Node.js', level: 90 },
-        { name: 'TypeScript', level: 90 },
-        { name: 'PHP / Laravel', level: 85 },
-        { name: 'APIs REST/GraphQL', level: 85 },
-        { name: 'Autenticacao/Autorizacao', level: 80 },
-        { name: 'Testing (Jest/Integration)', level: 80 },
-      ]
-    },
-    {
-      icon: <MonitorSmartphone className="h-8 w-8 text-primary" />,
-      title: "Dados e integracao",
-      skills: [
-        { name: 'PostgreSQL/MySQL', level: 85 },
-        { name: 'MongoDB', level: 70 },
-        { name: 'Redis/Cache', level: 75 },
-        { name: 'Mensageria/Queues', level: 70 },
-        { name: 'Design de schemas', level: 80 },
-      ]
-    },
-    {
-      icon: <Wrench className="h-8 w-8 text-primary" />,
-      title: "Confiabilidade e ops",
-      skills: [
-        { name: 'Docker', level: 80 },
-        { name: 'CI/CD', level: 75 },
-        { name: 'Observabilidade (logs/metrics)', level: 75 },
-        { name: 'AWS/Cloud', level: 70 },
-        { name: 'Infra as code basica', level: 65 },
-      ]
-    }
-  ];
+  const skillCategories =
+    language === "en-US"
+      ? [
+          {
+            icon: <Server className="h-8 w-8 text-primary" />,
+            title: "Backend core",
+            skills: [
+              { name: "Node.js", level: 90 },
+              { name: "TypeScript", level: 90 },
+              { name: "PHP / Laravel", level: 85 },
+              { name: "REST/GraphQL APIs", level: 85 },
+              { name: "AuthN/AuthZ", level: 80 },
+              { name: "Testing (Jest/Integration)", level: 80 },
+            ],
+          },
+          {
+            icon: <MonitorSmartphone className="h-8 w-8 text-primary" />,
+            title: "Data & integration",
+            skills: [
+              { name: "PostgreSQL/MySQL", level: 85 },
+              { name: "MongoDB", level: 70 },
+              { name: "Redis/Cache", level: 75 },
+              { name: "Messaging/Queues", level: 70 },
+              { name: "Schema design", level: 80 },
+            ],
+          },
+          {
+            icon: <Wrench className="h-8 w-8 text-primary" />,
+            title: "Reliability & ops",
+            skills: [
+              { name: "Docker", level: 80 },
+              { name: "CI/CD", level: 75 },
+              { name: "Observability (logs/metrics)", level: 75 },
+              { name: "AWS/Cloud", level: 70 },
+              { name: "Basic IaC", level: 65 },
+            ],
+          },
+        ]
+      : [
+          {
+            icon: <Server className="h-8 w-8 text-primary" />,
+            title: "Backend core",
+            skills: [
+              { name: "Node.js", level: 90 },
+              { name: "TypeScript", level: 90 },
+              { name: "PHP / Laravel", level: 85 },
+              { name: "APIs REST/GraphQL", level: 85 },
+              { name: "Autenticacao/Autorizacao", level: 80 },
+              { name: "Testing (Jest/Integration)", level: 80 },
+            ],
+          },
+          {
+            icon: <MonitorSmartphone className="h-8 w-8 text-primary" />,
+            title: "Dados e integracao",
+            skills: [
+              { name: "PostgreSQL/MySQL", level: 85 },
+              { name: "MongoDB", level: 70 },
+              { name: "Redis/Cache", level: 75 },
+              { name: "Mensageria/Queues", level: 70 },
+              { name: "Design de schemas", level: 80 },
+            ],
+          },
+          {
+            icon: <Wrench className="h-8 w-8 text-primary" />,
+            title: "Confiabilidade e ops",
+            skills: [
+              { name: "Docker", level: 80 },
+              { name: "CI/CD", level: 75 },
+              { name: "Observabilidade (logs/metrics)", level: 75 },
+              { name: "AWS/Cloud", level: 70 },
+              { name: "Infra as code basica", level: 65 },
+            ],
+          },
+        ];
   
 
   return (
@@ -63,11 +101,15 @@ export function Skills() {
           transition={{ duration: 0.5 }}
         >
           <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            Stack principal
+            {language === "en-US" ? "Core stack" : "Stack principal"}
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold">Competencias tecnicas</h2>
+          <h2 className="text-3xl md:text-4xl font-bold">
+            {language === "en-US" ? "Technical skills" : "Competencias tecnicas"}
+          </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Foco em backend robusto, dados consistentes e confiabilidade em producao.
+            {language === "en-US"
+              ? "Backend robustness, consistent data and production reliability."
+              : "Foco em backend robusto, dados consistentes e confiabilidade em producao."}
           </p>
         </motion.div>
 

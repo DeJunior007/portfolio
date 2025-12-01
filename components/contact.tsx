@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 
 export function Contact() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const contactInfo = [
     {
@@ -65,15 +65,23 @@ export function Contact() {
           transition={{ duration: 0.5 }}
         >
           <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            Convite para entrevistas
+            {language === "en-US" ? "Interview invite" : "Convite para entrevistas"}
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold">Entre em Contato</h2>
+          <h2 className="text-3xl md:text-4xl font-bold">
+            {language === "en-US" ? "Get in touch" : "Entre em Contato"}
+          </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Vamos conversar sobre vagas full-time em backend/integracoes.
+            {language === "en-US"
+              ? "Open to full-time backend/integration roles."
+              : "Vamos conversar sobre vagas full-time em backend/integracoes."}
           </p>
           <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
             <Clock className="h-4 w-4" />
-            <span>Respondo em ate 24h; chamadas de 15 min disponiveis.</span>
+            <span>
+              {language === "en-US"
+                ? "Replies within 24h; 15-min calls available."
+                : "Respondo em ate 24h; chamadas de 15 min disponiveis."}
+            </span>
           </div>
         </motion.div>
 
@@ -86,10 +94,12 @@ export function Contact() {
           >
             <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-2xl shadow-lg shadow-primary/10 flex flex-col gap-4">
               <h3 className="text-2xl font-bold mb-3">
-                Fale direto comigo
+                {language === "en-US" ? "Talk directly to me" : "Fale direto comigo"}
               </h3>
               <p className="text-muted-foreground mb-6">
-                Sem formularios. Resposta rapida por WhatsApp; email como alternativa.
+                {language === "en-US"
+                  ? "No forms. Fast response via WhatsApp; email as alternative."
+                  : "Sem formularios. Resposta rapida por WhatsApp; email como alternativa."}
               </p>
               <div className="flex flex-col gap-3">
                 <Button size="lg" className="w-full" asChild>
@@ -105,11 +115,13 @@ export function Contact() {
                 <Button variant="outline" size="lg" className="w-full" asChild>
                   <a href="mailto:deiltonp74@gmail.com">
                     <Mail className="mr-2 h-4 w-4" />
-                    Prefiro email
+                    {language === "en-US" ? "Prefer email" : "Prefiro email"}
                   </a>
                 </Button>
                 <p className="text-xs text-muted-foreground">
-                  Dica para recruiters: envie vaga, senioridade e faixa salarial para agilizar.
+                  {language === "en-US"
+                    ? "Recruiter tip: send role, seniority and salary range to speed things up."
+                    : "Dica para recruiters: envie vaga, senioridade e faixa salarial para agilizar."}
                 </p>
               </div>
             </div>
