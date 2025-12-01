@@ -1,14 +1,10 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { useLanguage } from '@/components/language-provider';
-import { ModeToggle } from '@/components/mode-toggle';
-import { Button } from '@/components/ui/button';
-import { 
-  Menu, 
-  X, 
-  Globe 
-} from 'lucide-react';
+import { useState, useEffect } from "react";
+import { useLanguage } from "@/components/language-provider";
+import { ModeToggle } from "@/components/mode-toggle";
+import { Button } from "@/components/ui/button";
+import { Menu, X, Globe, ExternalLink } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,22 +22,24 @@ export function Header() {
       setIsScrolled(window.scrollY > 10);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { label: t('nav.home'), href: '#home' },
-    { label: t('nav.about'), href: '#about' },
-    { label: t('nav.skills'), href: '#skills' },
-    { label: t('nav.projects'), href: '#projects' },
-    { label: t('nav.contact'), href: '#contact' },
+    { label: t("nav.home"), href: "#home" },
+    { label: t("nav.about"), href: "#about" },
+    { label: t("nav.skills"), href: "#skills" },
+    { label: t("nav.projects"), href: "#projects" },
+    { label: t("nav.contact"), href: "#contact" },
   ];
 
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/80 backdrop-blur-md shadow-md' : 'bg-transparent'
+        isScrolled
+          ? "bg-background/80 backdrop-blur-xl shadow-lg border-b border-white/10"
+          : "bg-background/40 backdrop-blur-xl border-b border-transparent"
       }`}
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -54,7 +52,7 @@ export function Header() {
           <ul className="flex space-x-6">
             {navItems.map((item) => (
               <li key={item.href}>
-                <a 
+                <a
                   href={item.href}
                   className="text-foreground/80 hover:text-primary transition-colors"
                 >
@@ -72,21 +70,36 @@ export function Header() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem 
-                  onClick={() => setLanguage('pt-BR')}
-                  className={language === 'pt-BR' ? 'bg-accent' : ''}
+                <DropdownMenuItem
+                  onClick={() => setLanguage("pt-BR")}
+                  className={language === "pt-BR" ? "bg-accent" : ""}
                 >
-                  Português (BR)
+                  Portugues (BR)
                 </DropdownMenuItem>
-                <DropdownMenuItem 
-                  onClick={() => setLanguage('en-US')}
-                  className={language === 'en-US' ? 'bg-accent' : ''}
+                <DropdownMenuItem
+                  onClick={() => setLanguage("en-US")}
+                  className={language === "en-US" ? "bg-accent" : ""}
                 >
                   English (US)
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             <ModeToggle />
+            <Button
+              variant="outline"
+              size="sm"
+              asChild
+              className="border-white/20 bg-white/5 backdrop-blur"
+            >
+              <a
+                href="https://www.linkedin.com/in/deilton-pedro/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+                <ExternalLink className="ml-1.5 h-4 w-4" />
+              </a>
+            </Button>
           </div>
         </nav>
 
@@ -99,23 +112,23 @@ export function Header() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem 
-                onClick={() => setLanguage('pt-BR')}
-                className={language === 'pt-BR' ? 'bg-accent' : ''}
+              <DropdownMenuItem
+                onClick={() => setLanguage("pt-BR")}
+                className={language === "pt-BR" ? "bg-accent" : ""}
               >
-                Português (BR)
+                Portugues (BR)
               </DropdownMenuItem>
-              <DropdownMenuItem 
-                onClick={() => setLanguage('en-US')}
-                className={language === 'en-US' ? 'bg-accent' : ''}
+              <DropdownMenuItem
+                onClick={() => setLanguage("en-US")}
+                className={language === "en-US" ? "bg-accent" : ""}
               >
                 English (US)
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <ModeToggle />
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             size="icon"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
@@ -130,12 +143,12 @@ export function Header() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-md shadow-md">
+        <div className="md:hidden bg-background/95 backdrop-blur-xl shadow-lg border-b border-white/10">
           <nav className="container mx-auto px-4 py-4">
             <ul className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <a 
+                  <a
                     href={item.href}
                     className="block py-2 text-foreground/80 hover:text-primary transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -144,6 +157,18 @@ export function Header() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/deilton-pedro/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/5 px-4 py-2 text-sm backdrop-blur hover:border-primary/40"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  LinkedIn para recrutadores
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </li>
             </ul>
           </nav>
         </div>

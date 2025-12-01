@@ -1,52 +1,28 @@
 "use client";
 
-import { useState } from 'react';
 import { useLanguage } from '@/components/language-provider';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
 import { 
   Mail, 
   MapPin, 
-  Send,
   Linkedin,
   Github,
+  Clock,
+  PhoneCall,
+  ExternalLink,
 } from 'lucide-react';
 
 export function Contact() {
   const { t } = useLanguage();
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast({
-      title: t('contact.success'),
-      description: `${formData.name}, ${t('contact.success')}`,
-    });
-    
-    setFormData({ name: '', email: '', message: '' });
-    setIsSubmitting(false);
-  };
 
   const contactInfo = [
+    {
+      icon: <PhoneCall className="h-6 w-6 text-primary" />,
+      title: "Telefone",
+      value: "+55 14 98228-0039",
+      href: "tel:+5514982280039"
+    },
     {
       icon: <Mail className="h-6 w-6 text-primary" />,
       title: "Email",
@@ -76,97 +52,66 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="relative py-20 md:py-24 pb-24 md:pb-28 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background via-secondary/10 to-background" />
+      <div className="pointer-events-none absolute -right-16 top-0 h-80 w-80 rounded-full bg-primary/20 blur-3xl" />
+      <div className="pointer-events-none absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-secondary/20 blur-3xl" />
+      <div className="container mx-auto px-4 max-w-6xl">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-16 space-y-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('contact.title')}</h2>
-          <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
+          <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+            Convite para entrevistas
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold">Entre em Contato</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            {t('contact.subtitle')}
+            Vamos conversar sobre vagas full-time em backend/integracoes.
           </p>
+          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+            <Clock className="h-4 w-4" />
+            <span>Respondo em ate 24h; chamadas de 15 min disponiveis.</span>
+          </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="bg-card rounded-lg shadow-md p-8">
-              <h3 className="text-2xl font-bold mb-6">
-                {t('contact.title')}
+            <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-2xl shadow-lg shadow-primary/10 flex flex-col gap-4">
+              <h3 className="text-2xl font-bold mb-3">
+                Fale direto comigo
               </h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    {t('contact.name')}
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    placeholder="Thomas Shelby"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    {t('contact.email')}
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="shelby@example.com"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    {t('contact.message')}
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    placeholder="Your message here..."
-                    rows={5}
-                  />
-                </div>
-                
-                <Button 
-                  type="submit" 
-                  className="w-full"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    <div className="flex items-center">
-                      <div className="animate-spin mr-2 h-4 w-4 border-2 border-current border-t-transparent rounded-full"></div>
-                      {t('contact.send')}...
-                    </div>
-                  ) : (
-                    <div className="flex items-center">
-                      <Send className="mr-2 h-4 w-4" />
-                      {t('contact.send')}
-                    </div>
-                  )}
+              <p className="text-muted-foreground mb-6">
+                Sem formularios. Resposta rapida por WhatsApp; email como alternativa.
+              </p>
+              <div className="flex flex-col gap-3">
+                <Button size="lg" className="w-full" asChild>
+                  <a
+                    href="https://wa.me/5514982280039"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <PhoneCall className="mr-2 h-4 w-4" />
+                    Abrir WhatsApp agora
+                  </a>
                 </Button>
-              </form>
+                <Button variant="outline" size="lg" className="w-full" asChild>
+                  <a href="mailto:deiltonp74@gmail.com">
+                    <Mail className="mr-2 h-4 w-4" />
+                    Prefiro email
+                  </a>
+                </Button>
+                <p className="text-xs text-muted-foreground">
+                  Dica para recruiters: envie vaga, senioridade e faixa salarial para agilizar.
+                </p>
+              </div>
             </div>
           </motion.div>
           
@@ -176,7 +121,7 @@ export function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="bg-card rounded-lg shadow-md p-8 h-full">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-8 h-full backdrop-blur-2xl shadow-lg shadow-primary/10 flex flex-col gap-6">
               <h3 className="text-2xl font-bold mb-6">
                 {t('contact.title')}
               </h3>
@@ -215,6 +160,26 @@ export function Contact() {
                       {link.icon}
                     </a>
                   ))}
+                </div>
+              </div>
+
+              <div className="mt-auto rounded-2xl border border-primary/15 bg-primary/10 p-4 backdrop-blur-2xl">
+                <div className="flex items-start gap-3">
+                  <ExternalLink className="h-4 w-4 text-primary mt-1" />
+                  <div>
+                    <p className="font-semibold">Perfil completo</p>
+                    <p className="text-sm text-muted-foreground">
+                      Mais sobre mim no LinkedIn: stack, entregas e cases recentes.
+                    </p>
+                    <a
+                      href="https://www.linkedin.com/in/deilton-pedro/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary text-sm font-semibold hover:underline inline-flex items-center gap-1 mt-2"
+                    >
+                      Abrir LinkedIn <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
