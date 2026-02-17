@@ -3,200 +3,223 @@
 import { useLanguage } from '@/components/language-provider';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { 
-  Mail, 
-  MapPin, 
+import {
+  Mail,
+  MapPin,
   Linkedin,
   Github,
   Clock,
   PhoneCall,
   ExternalLink,
+  MessageCircle,
 } from 'lucide-react';
+
+const easing = [0.22, 1, 0.36, 1];
+
+const fadeUp = (delay = 0) => ({
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: easing, delay },
+  },
+});
 
 export function Contact() {
   const { t, language } = useLanguage();
+  const ptBR = language === "pt-BR";
 
-  const contactInfo = [
-    {
-      icon: <PhoneCall className="h-6 w-6 text-primary" />,
-      title: "Telefone",
-      value: "+55 14 98228-0039",
-      href: "tel:+5514982280039"
-    },
-    {
-      icon: <Mail className="h-6 w-6 text-primary" />,
-      title: "Email",
-      value: "deiltonp74@gmail.com",
-      href: "mailto:deiltonp74@gmail.com"
-    },
-    {
-      icon: <MapPin className="h-6 w-6 text-primary" />,
-      title: "Location",
-      value: "Ourinhos, Brazil",
-      href: "#"
-    }
-  ];
-
-  const socialLinks = [
-    {
-      icon: <Linkedin className="h-5 w-5" />,
-      href: "https://www.linkedin.com/in/deilton-pedro/",
-      label: "LinkedIn"
-    },
-    {
-      icon: <Github className="h-5 w-5" />,
-      href: "https://github.com/DeJunior007",
-      label: "GitHub"
-    },
- 
-  ];
+  const copy = {
+    badge: ptBR ? "Convite para entrevistas" : "Interview invite",
+    title: ptBR ? "Vamos conversar?" : "Let's talk?",
+    subtitle: ptBR
+      ? "Disponível para vagas full-time com foco em back-end. Respondo em até 24h."
+      : "Open to full-time backend-focused roles. Reply within 24h.",
+    recruiterTip: ptBR
+      ? "💡 Recruiter: envie a vaga, senioridade e faixa salarial para agilizar."
+      : "💡 Recruiter tip: share the role, seniority and salary range to speed things up.",
+    whatsapp: ptBR ? "Chamar no WhatsApp" : "Message on WhatsApp",
+    email: ptBR ? "Enviar email" : "Send email",
+    orLabel: ptBR ? "ou" : "or",
+    availability: ptBR
+      ? "Disponível · Responde em até 24h"
+      : "Available · Replies within 24h",
+    location: "Ourinhos, Brasil · Remote OK",
+    profileLabel: ptBR ? "Ver perfil completo" : "Full profile",
+  };
 
   return (
-    <section id="contact" className="relative py-20 md:py-24 pb-24 md:pb-28 overflow-hidden">
+    <section
+      id="contact"
+      className="relative py-24 md:py-28 pb-24 md:pb-32 overflow-hidden"
+    >
+      {/* Background blobs */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background via-secondary/10 to-background" />
       <div className="pointer-events-none absolute -right-16 top-0 h-80 w-80 rounded-full bg-primary/20 blur-3xl" />
       <div className="pointer-events-none absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-secondary/20 blur-3xl" />
-      <div className="container mx-auto px-4 max-w-6xl">
-        <motion.div 
-          className="text-center mb-16 space-y-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+
+      <div className="container mx-auto px-4 max-w-4xl">
+
+        {/* ── Header ── */}
+        <motion.div
+          className="text-center mb-14 space-y-3"
+          variants={fadeUp(0)}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
         >
           <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            {language === "en-US" ? "Interview invite" : "Convite para entrevistas"}
+            {copy.badge}
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold">
-            {language === "en-US" ? "Get in touch" : "Entre em Contato"}
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            {language === "en-US"
-              ? "Open to full-time backend/integration roles."
-              : "Vamos conversar sobre vagas full-time em backend/integracoes."}
+          <h2 className="text-4xl md:text-5xl font-bold">{copy.title}</h2>
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+            {copy.subtitle}
           </p>
-          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-            <Clock className="h-4 w-4" />
-            <span>
-              {language === "en-US"
-                ? "Replies within 24h; 15-min calls available."
-                : "Respondo em ate 24h; chamadas de 15 min disponiveis."}
-            </span>
+          <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+            {copy.availability}
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-2xl shadow-lg shadow-primary/10 flex flex-col gap-4">
-              <h3 className="text-2xl font-bold mb-3">
-                {language === "en-US" ? "Talk directly to me" : "Fale direto comigo"}
-              </h3>
-              <p className="text-muted-foreground mb-6">
-                {language === "en-US"
-                  ? "No forms. Fast response via WhatsApp; email as alternative."
-                  : "Sem formularios. Resposta rapida por WhatsApp; email como alternativa."}
-              </p>
-              <div className="flex flex-col gap-3">
-                <Button size="lg" className="w-full" asChild>
-                  <a
-                    href="https://wa.me/5514982280039"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <PhoneCall className="mr-2 h-4 w-4" />
-                    Abrir WhatsApp agora
-                  </a>
-                </Button>
-                <Button variant="outline" size="lg" className="w-full" asChild>
-                  <a href="mailto:deiltonp74@gmail.com">
-                    <Mail className="mr-2 h-4 w-4" />
-                    {language === "en-US" ? "Prefer email" : "Prefiro email"}
-                  </a>
-                </Button>
-                <p className="text-xs text-muted-foreground">
-                  {language === "en-US"
-                    ? "Recruiter tip: send role, seniority and salary range to speed things up."
-                    : "Dica para recruiters: envie vaga, senioridade e faixa salarial para agilizar."}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-8 h-full backdrop-blur-2xl shadow-lg shadow-primary/10 flex flex-col gap-6">
-              <h3 className="text-2xl font-bold mb-6">
-                {t('contact.title')}
-              </h3>
-              
-              <div className="space-y-6 mb-8">
-                {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-start">
-                    <div className="mr-4 p-3 bg-primary/10 rounded-full">
-                      {info.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-medium">{info.title}</h4>
-                      <a 
-                        href={info.href} 
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {info.value}
-                      </a>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              <div>
-                <h4 className="font-medium mb-4">Social Media</h4>
-                <div className="flex space-x-4">
-                  {socialLinks.map((link, index) => (
-                    <a 
-                      key={index}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors"
-                      aria-label={link.label}
-                    >
-                      {link.icon}
-                    </a>
-                  ))}
-                </div>
-              </div>
+        {/* ── CTA principal ── */}
+        <motion.div
+          variants={fadeUp(0.1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl shadow-xl shadow-primary/10 p-8 md:p-10 mb-6">
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
 
-              <div className="mt-auto rounded-2xl border border-primary/15 bg-primary/10 p-4 backdrop-blur-2xl">
-                <div className="flex items-start gap-3">
-                  <ExternalLink className="h-4 w-4 text-primary mt-1" />
-                  <div>
-                    <p className="font-semibold">Perfil completo</p>
-                    <p className="text-sm text-muted-foreground">
-                      Mais sobre mim no LinkedIn: stack, entregas e cases recentes.
-                    </p>
-                    <a
-                      href="https://www.linkedin.com/in/deilton-pedro/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary text-sm font-semibold hover:underline inline-flex items-center gap-1 mt-2"
-                    >
-                      Abrir LinkedIn <ExternalLink className="h-4 w-4" />
-                    </a>
-                  </div>
-                </div>
-              </div>
+            {/* Recruiter tip — destaque no topo */}
+            <div className="relative mb-8 rounded-xl border border-primary/20 bg-primary/10 px-4 py-3 text-sm text-primary font-medium">
+              {copy.recruiterTip}
             </div>
-          </motion.div>
-        </div>
+
+            {/* Botões de ação */}
+            <div className="relative flex flex-col sm:flex-row gap-4">
+              <Button size="lg" className="flex-1 h-14 text-base" asChild>
+                <a
+                  href="https://wa.me/5514982280039"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  {copy.whatsapp}
+                </a>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="flex-1 h-14 text-base"
+                asChild
+              >
+                <a href="mailto:deiltonp74@gmail.com">
+                  <Mail className="mr-2 h-5 w-5" />
+                  {copy.email}
+                </a>
+              </Button>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* ── Info + Social grid ── */}
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6"
+          variants={fadeUp(0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          {/* Telefone */}
+          <a
+            href="tel:+5514982280039"
+            className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-5 py-4 transition-all duration-200 hover:border-primary/30 hover:bg-primary/5"
+          >
+            <div className="shrink-0 flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
+              <PhoneCall className="h-5 w-5 text-primary" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">WhatsApp</p>
+              <p className="text-sm font-semibold truncate">+55 14 98228-0039</p>
+            </div>
+          </a>
+
+          {/* Email */}
+          <a
+            href="mailto:deiltonp74@gmail.com"
+            className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-5 py-4 transition-all duration-200 hover:border-primary/30 hover:bg-primary/5"
+          >
+            <div className="shrink-0 flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
+              <Mail className="h-5 w-5 text-primary" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">Email</p>
+              <p className="text-sm font-semibold truncate">deiltonp74@gmail.com</p>
+            </div>
+          </a>
+
+          {/* Localização */}
+          <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-5 py-4">
+            <div className="shrink-0 flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10">
+              <MapPin className="h-5 w-5 text-primary" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">
+                {ptBR ? "Localização" : "Location"}
+              </p>
+              <p className="text-sm font-semibold truncate">{copy.location}</p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* ── Social + LinkedIn ── */}
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+          variants={fadeUp(0.3)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          {/* LinkedIn destaque */}
+          <a
+            href="https://www.linkedin.com/in/deilton-pedro/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-6 py-5 transition-all duration-200 hover:border-primary/30 hover:bg-primary/5"
+          >
+            <div className="shrink-0 flex items-center justify-center w-11 h-11 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
+              <Linkedin className="h-5 w-5 text-primary" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-semibold">LinkedIn</p>
+              <p className="text-sm text-muted-foreground truncate">
+                {ptBR ? "Stack, cases e experiência completa" : "Stack, cases and full experience"}
+              </p>
+            </div>
+            <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
+          </a>
+
+          {/* GitHub destaque */}
+          <a
+            href="https://github.com/DeJunior007"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-6 py-5 transition-all duration-200 hover:border-primary/30 hover:bg-primary/5"
+          >
+            <div className="shrink-0 flex items-center justify-center w-11 h-11 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
+              <Github className="h-5 w-5 text-primary" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-semibold">GitHub</p>
+              <p className="text-sm text-muted-foreground truncate">
+                {ptBR ? "Código, projetos e contribuições" : "Code, projects and contributions"}
+              </p>
+            </div>
+            <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
+          </a>
+        </motion.div>
+
       </div>
     </section>
   );

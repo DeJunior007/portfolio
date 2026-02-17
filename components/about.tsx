@@ -16,7 +16,7 @@ export function About() {
     {
       icon: <Briefcase className="h-8 w-8 text-primary" />,
       value: "10+ entregas",
-      label: language === "en-US" ? "SaaS & integrations" : "SaaS e integracoes",
+      label: language === "en-US" ? "SaaS & integrations" : "SaaS e integrações",
     },
     {
       icon: <Users className="h-8 w-8 text-primary" />,
@@ -28,39 +28,39 @@ export function About() {
   const copy =
     language === "en-US"
       ? {
-          badge: "Interactive resume",
+          badge: "About me",
           title: "Who I am",
           intro:
-            "Fullstack engineer: well-modeled APIs, reliability, queues, webhooks, WebSocket and React/Next interfaces.",
-          summaryTitle: "Professional summary",
+            "I'm a backend-focused fullstack engineer who builds the infrastructure that keeps products running — and delivers clean frontends so I don't create bottlenecks for other teams.",
+          summaryTitle: "My background",
           summary:
-            "Specialized in TypeScript/Node.js and Laravel/PHP, from API design to production monitoring. Experience with relational databases, queues (Horizon), WebSocket, authentication and cloud. Frontend with React/Next to keep contracts aligned.",
+            "I've spent the last 2+ years building APIs, async pipelines and real-time systems with Laravel/PHP and TypeScript/Node.js. I care deeply about system reliability: proper error handling, observability, predictable deploys and well-documented contracts.",
           case:
-            "Recent case: central integration API with financial institutions, simulations running in background and real-time notification via WebSocket. Reduced tool-switching and sped up service.",
-          helpTitle: "How I help",
+            "Most recent case: built a central integration API connecting financial institutions, running credit simulations asynchronously in the background and streaming real-time updates via WebSocket. Eliminated tool-switching between systems and cut average service time.",
+          helpTitle: "What you get when you hire me",
           helpBullets: [
-            "Model business domains and design consistent APIs",
-            "Care for logs, observability and safe rollout",
-            "Pair with frontend for clear contracts",
-            "Keep deploys and pipelines predictable",
+            "APIs that are consistent, documented and easy to consume",
+            "Async flows (queues, workers) that don't block your UX",
+            "Real-time features via WebSocket done right",
+            "A dev who talks to product and design — not just other devs",
           ],
         }
       : {
-          badge: "Curriculo interativo",
+          badge: "Sobre mim",
           title: "Quem eu sou",
           intro:
-            "Engenheiro de software fullstack: APIs bem modeladas, confiabilidade e interfaces em React/Next. Trabalho perto de produto, cuidando de filas, webhooks, WebSocket e bancos relacionais.",
-          summaryTitle: "Resumo profissional",
+            "Sou engenheiro de software fullstack com foco em back-end — construo a infraestrutura que sustenta o produto e entrego interfaces funcionais para não criar gargalo no time.",
+          summaryTitle: "Minha trajetória",
           summary:
-            "Especializado em TypeScript/Node.js e Laravel/PHP, do design das APIs ao monitoramento em producao. Experiencia com bancos relacionais, mensageria (queues/Horizon), WebSocket, autenticacao e cloud. No front, React/Next para interfaces alinhadas ao backend.",
+            "Nos últimos 2+ anos trabalhei com APIs, pipelines assíncronos e sistemas em tempo real usando Laravel/PHP e TypeScript/Node.js. Me importo com confiabilidade: tratamento de erros, observabilidade, deploy previsível e contratos bem definidos.",
           case:
-            "Case recente: API central de integracao com instituicoes financeiras, simulacoes rodando em background e notificacao em tempo real via WebSocket. Reduziu alternancia entre sistemas e acelerou atendimento.",
-          helpTitle: "Como ajudo",
+            "Case mais recente: API central de integração com instituições financeiras, rodando simulações de crédito em background e transmitindo atualizações via WebSocket. Eliminou a alternância entre sistemas e reduziu o tempo médio de atendimento.",
+          helpTitle: "O que você ganha contratando eu",
           helpBullets: [
-            "Modelo dominios de negocio e desenho APIs consistentes",
-            "Cuido de logs, observabilidade e rollout seguro",
-            "Faco pairing com frontend para contratos claros",
-            "Deixo deploy e pipelines previsiveis",
+            "APIs consistentes, documentadas e fáceis de consumir",
+            "Fluxos assíncronos (filas, workers) que não bloqueiam o UX",
+            "WebSocket feito do jeito certo para features em tempo real",
+            "Um dev que fala com produto e design — não só com outros devs",
           ],
         };
 

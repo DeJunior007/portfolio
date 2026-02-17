@@ -11,30 +11,30 @@ export function Hero() {
 
   const copy = {
     "pt-BR": {
-      role: "Desenvolvedor de Software (Fullstack)",
+      role: "Desenvolvedor Full Stack · Foco em Back-End",
       description:
-        "Entrego APIs e front alinhados. TypeScript/Node.js e Laravel/PHP no back; React/Next no front; integracoes com webhooks/filas e WebSocket. Case: API financeira com simulacoes em background e retorno em tempo real.",
+        "Construo o que sustenta o sistema: APIs REST robustas, filas assíncronas (Laravel Horizon), WebSocket em tempo real e automações com n8n/IA. No front, entrego interfaces funcionais com React/Next.js. Resultado: sistemas que não travam e times que entregam mais rápido.",
       pills: [
-        "Fullstack (React/Next + Node/PHP)",
-        "APIs, Webhooks, WebSocket",
-        "Filas (Horizon) e automacoes",
-        "Disponivel full-time",
+        "Laravel · Node.js · PHP",
+        "Filas, WebSocket & APIs",
+        "Automações com n8n + OpenAI",
+        "Disponível full-time",
       ],
       casesCta: "Ver projetos",
-      badge: "Candidato fullstack",
+      badge: "Back-end first",
     },
     "en-US": {
-      role: "Software Engineer (Fullstack)",
+      role: "Full Stack Engineer · Backend-Focused",
       description:
-        "Aligned APIs and frontend. TypeScript/Node.js and Laravel/PHP on backend; React/Next on frontend; webhooks/queues and WebSocket. Case: financial integration API with background simulations and real-time updates.",
+        "I build what keeps systems running: robust REST APIs, async queues (Laravel Horizon), real-time WebSocket and AI-powered automations with n8n. I also deliver clean frontends with React/Next.js. Result: systems that scale and teams that ship faster.",
       pills: [
-        "Fullstack (React/Next + Node/PHP)",
-        "APIs, Webhooks, WebSocket",
-        "Queues (Horizon) and automation",
+        "Laravel · Node.js · PHP",
+        "Queues, WebSocket & APIs",
+        "Automations with n8n + OpenAI",
         "Open to full-time",
       ],
       casesCta: "See projects",
-      badge: "Fullstack candidate",
+      badge: "Backend-first",
     },
   } as const;
 
@@ -121,7 +121,7 @@ export function Hero() {
               <Image
                 width={300}
                 height={300}
-                src="https://i.ibb.co/4Z3B3tGN/Deilton.jpg" // Caminho relativo a pasta public
+                src="https://i.ibb.co/4Z3B3tGN/Deilton.jpg"
                 alt="Deilton Pedro Junior"
                 className="absolute inset-4 rounded-full object-cover border-4 border-background shadow-xl"
               />
