@@ -37,5 +37,12 @@ jobs:
       - name: Type check
         run: yarn typecheck
 
+      - name: Test
+        run: yarn test
+
       - name: Build
         run: yarn build
+
+      - name: Audit dependencies (high/critical, non-blocking)
+        continue-on-error: true
+        run: yarn audit --level high
