@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/components/language-provider";
 import { motion } from "framer-motion";
-import { Code, Briefcase, Users } from "lucide-react";
+import { Code, Briefcase } from "lucide-react";
 
 export function About() {
   const { language } = useLanguage();
@@ -17,11 +17,6 @@ export function About() {
       icon: <Briefcase className="h-8 w-8 text-primary" />,
       value: "10+ entregas",
       label: language === "en-US" ? "SaaS & integrations" : "SaaS e integrações",
-    },
-    {
-      icon: <Users className="h-8 w-8 text-primary" />,
-      value: "Squads",
-      label: language === "en-US" ? "Prod/Design/QA" : "Prod/Design/QA",
     },
   ];
 
@@ -120,15 +115,15 @@ export function About() {
                 <p className="text-muted-foreground leading-relaxed mt-3">{copy.case}</p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 gap-4">
                 {stats.map((stat, index) => (
                   <div
                     key={index}
-                    className="glow-card p-6 rounded-2xl border border-white/10 bg-white/5 text-center backdrop-blur-2xl shadow-lg shadow-primary/10 transition-transform duration-300 hover:-translate-y-1"
+                    className="glow-card min-w-0 p-4 sm:p-6 rounded-2xl border border-white/10 bg-white/5 text-center backdrop-blur-2xl shadow-lg shadow-primary/10 transition-transform duration-300 hover:-translate-y-1"
                   >
                     <div className="flex justify-center mb-4">{stat.icon}</div>
-                    <h3 className="text-3xl font-bold mb-2">{stat.value}</h3>
-                    <p className="text-muted-foreground">{stat.label}</p>
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-2 break-words">{stat.value}</h3>
+                    <p className="text-muted-foreground break-words">{stat.label}</p>
                   </div>
                 ))}
               </div>
