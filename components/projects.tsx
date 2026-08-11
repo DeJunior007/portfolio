@@ -288,7 +288,7 @@ export function Projects() {
                   <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/8 via-transparent to-secondary/8" />
 
                   <div className="flex flex-col md:flex-row md:items-start gap-6">
-                    <div className="flex-1 space-y-4">
+                    <div className="flex-1 min-w-0 space-y-4">
                       <div className="flex items-center gap-3">
                         <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary uppercase tracking-widest">
                           {project.type}
@@ -424,9 +424,9 @@ export function Projects() {
                       <Briefcase className="h-5 w-5 text-primary" />
                     </div>
 
-                    <div className="flex-1 space-y-3">
+                    <div className="flex-1 min-w-0 space-y-3">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                        <div>
+                        <div className="min-w-0">
                           <h3 className="font-bold text-lg leading-tight">{exp.company}</h3>
                           <p className="text-primary text-sm font-medium">{exp.role}</p>
                         </div>
