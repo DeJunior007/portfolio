@@ -9,7 +9,6 @@ function wrapper({ children }: { children: ReactNode }) {
 
 describe("useLanguage", () => {
   it("throws when used outside a LanguageProvider", () => {
-    // Silence the expected React error log for this assertion.
     const spy = vi.spyOn(console, "error").mockImplementation(() => {});
     expect(() => renderHook(() => useLanguage())).toThrow(
       "useLanguage must be used within a LanguageProvider"
@@ -20,8 +19,6 @@ describe("useLanguage", () => {
   it("defaults to pt-BR and translates known keys", () => {
     const { result } = renderHook(() => useLanguage(), { wrapper });
     expect(result.current.language).toBe("pt-BR");
-    // Checks the key resolved to an actual translation instead of a literal
-    // copy string, so this doesn't churn every time copy text is edited.
     expect(result.current.t("nav.home")).not.toBe("nav.home");
   });
 

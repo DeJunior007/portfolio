@@ -1,6 +1,5 @@
 import "@testing-library/jest-dom/vitest";
 
-// framer-motion and next/image touch APIs jsdom doesn't implement.
 if (typeof window !== "undefined") {
   window.IntersectionObserver =
     window.IntersectionObserver ||
