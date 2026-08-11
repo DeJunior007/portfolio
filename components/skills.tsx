@@ -2,13 +2,13 @@
 
 import { useLanguage } from "@/components/language-provider";
 import { motion } from "framer-motion";
-import { Server, Database, Wrench, Layout } from "lucide-react";
+import { Server, Database, Wrench, Layout, Bot } from "lucide-react";
 
-const easing = [0.22, 1, 0.36, 1];
+const easing = [0.16, 1, 0.3, 1];
 
 const fadeUp = (delay = 0) => ({
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: easing, delay } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easing, delay } },
 });
 
 const listVariants = {
@@ -32,6 +32,7 @@ export function Skills() {
       color: "from-primary/20 to-primary/5",
       tags: [
         "Node.js",
+        "NestJS",
         "TypeScript",
         "PHP",
         "Laravel",
@@ -39,8 +40,9 @@ export function Skills() {
         "GraphQL",
         "WebSocket",
         "Queues / Horizon",
+        "RabbitMQ",
         "Webhooks",
-        "n8n",
+        "Python",
         "Jest",
       ],
     },
@@ -52,6 +54,7 @@ export function Skills() {
         "PostgreSQL",
         "MySQL",
         "PL/pgSQL",
+        "Prisma ORM",
         "Redis",
         "MongoDB",
         "Supabase",
@@ -70,6 +73,21 @@ export function Skills() {
         "Tailwind CSS",
         "Framer Motion",
         "shadcn/ui",
+        "Flutter (Dart)",
+      ],
+    },
+    {
+      icon: <Bot className="h-5 w-5 text-primary" />,
+      title: ptBR ? "IA & automação" : "AI & automation",
+      color: "from-primary/20 to-secondary/10",
+      tags: [
+        "n8n",
+        "LLMs em produção",
+        "Ollama",
+        "LLMs locais",
+        "OpenAI API",
+        "OpenAI Vision",
+        "RPA",
       ],
     },
     {
@@ -78,12 +96,13 @@ export function Skills() {
       color: "from-secondary/15 to-primary/5",
       tags: [
         "Docker",
+        "Kubernetes",
+        "GitOps (ArgoCD)",
         "Git / GitHub",
         "CI/CD",
-        "AWS (básico)",
+        "AWS",
         "Linux",
-        "Logs & observabilidade",
-        "OpenAI API",
+        "Postman",
       ],
     },
   ];
@@ -91,12 +110,12 @@ export function Skills() {
   return (
     <section id="skills" className="relative py-20 md:py-24 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background via-primary/5 to-background" />
+      <div className="pointer-events-none absolute inset-0 bg-cyber-dots opacity-[0.5]" />
       <div className="pointer-events-none absolute -right-20 top-10 h-72 w-72 rounded-full bg-primary/15 blur-3xl" />
       <div className="pointer-events-none absolute -left-24 bottom-0 h-64 w-64 rounded-full bg-secondary/15 blur-3xl" />
 
-      <div className="container mx-auto px-4">
+      <div className="mx-auto w-full max-w-content px-4">
 
-        {/* Header */}
         <motion.div
           className="text-center mb-14 space-y-3"
           variants={fadeUp(0)}
@@ -112,25 +131,24 @@ export function Skills() {
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
             {ptBR
-              ? "Back-end robusto em primeiro lugar. Front-end funcional quando necessário."
-              : "Robust backend first. Functional frontend when needed."}
+              ? "Full stack de ponta a ponta, com automações de IA quando fazem sentido."
+              : "End-to-end full stack, with AI automations when they make sense."}
           </p>
         </motion.div>
 
-        {/* Grid de categorias */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {categories.map((cat, i) => (
             <motion.div
               key={cat.title}
+              className={i === categories.length - 1 ? "sm:col-span-2" : undefined}
               variants={fadeUp(i * 0.08)}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
               whileHover={{ y: -3, transition: { duration: 0.2 } }}
             >
-              <div className="h-full rounded-2xl border border-white/10 bg-white/5 backdrop-blur-2xl shadow-md shadow-primary/5 p-6 space-y-4 transition-all duration-300 hover:border-primary/20 hover:shadow-primary/10">
+              <div className="glow-card h-full rounded-2xl border border-white/10 bg-white/5 backdrop-blur-2xl shadow-md shadow-primary/5 p-6 space-y-4 transition-all duration-300 hover:border-primary/20 hover:shadow-primary/10">
 
-                {/* Header do card */}
                 <div className="flex items-center gap-3">
                   <div className={`flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br ${cat.color} border border-white/10`}>
                     {cat.icon}
@@ -138,7 +156,6 @@ export function Skills() {
                   <h3 className="font-bold text-base">{cat.title}</h3>
                 </div>
 
-                {/* Tags */}
                 <motion.div
                   className="flex flex-wrap gap-2"
                   variants={listVariants}
@@ -161,19 +178,6 @@ export function Skills() {
             </motion.div>
           ))}
         </div>
-
-        {/* Nota de honestidade */}
-        <motion.p
-          className="text-center text-xs text-muted-foreground mt-10 max-w-lg mx-auto"
-          variants={fadeUp(0.4)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          {ptBR
-            ? "Stack em uso ativo em produção — sem barra de progresso inventada."
-            : "Stack actively used in production — no made-up progress bars."}
-        </motion.p>
 
       </div>
     </section>

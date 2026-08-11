@@ -22,7 +22,6 @@ export function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      // Detectar seção ativa
       const sections = ["home", "about", "skills", "projects", "contact"];
       const current = sections.find((section) => {
         const element = document.getElementById(section);
@@ -74,9 +73,8 @@ export function Header() {
           : "bg-transparent backdrop-blur-sm"
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-content px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
           <a
             href="#home"
             onClick={(e) => {
@@ -96,7 +94,6 @@ export function Header() {
             </div>
           </a>
 
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
               <a
@@ -124,7 +121,6 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -177,7 +173,6 @@ export function Header() {
             </Button>
           </div>
 
-          {/* Mobile Actions */}
           <div className="flex items-center space-x-2 lg:hidden">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -224,7 +219,6 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div
         className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
           isMobileMenuOpen
@@ -233,7 +227,7 @@ export function Header() {
         }`}
       >
         <div className="bg-background/98 backdrop-blur-xl border-t border-border/50 shadow-xl">
-          <nav className="container mx-auto px-4 py-6">
+          <nav className="mx-auto w-full max-w-content px-4 py-6">
             <ul className="space-y-1">
               {navItems.map((item) => (
                 <li key={item.href}>

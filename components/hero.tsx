@@ -6,16 +6,16 @@ import { ArrowRight, Sparkles, ExternalLink, Terminal } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const easing = [0.22, 1, 0.36, 1];
+const easing = [0.16, 1, 0.3, 1];
 
 const fadeLeft = (delay = 0) => ({
   hidden: { opacity: 0, x: -32 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: easing, delay } },
+  show: { opacity: 1, x: 0, transition: { duration: 0.75, ease: easing, delay } },
 });
 
 const fadeRight = (delay = 0) => ({
   hidden: { opacity: 0, x: 32 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: easing, delay } },
+  show: { opacity: 1, x: 0, transition: { duration: 0.75, ease: easing, delay } },
 });
 
 export function Hero() {
@@ -23,33 +23,33 @@ export function Hero() {
 
   const copy = {
     "pt-BR": {
-      role: "Full Stack · Foco em Back-End",
+      role: "Engenheiro de Software Full Stack",
       description:
-        "Construo o que sustenta o sistema: APIs REST robustas, filas assíncronas (Laravel Horizon), WebSocket em tempo real e automações com n8n/IA. No front, entrego interfaces funcionais com React/Next.js.",
-      result: "Sistemas que não travam. Times que entregam mais rápido.",
+        "Do banco de dados ao componente React: APIs REST, filas assíncronas, WebSocket em tempo real e automações com IA, do consumo de LLMs em produção a modelos locais com Ollama.",
+      result: "Sistemas que escalam. Times que entregam mais rápido.",
       pills: [
-        "Laravel · Node.js · PHP",
-        "Filas · WebSocket · APIs",
-        "n8n · OpenAI",
+        "React · Next.js · TypeScript",
+        "NestJS · Laravel · Node.js",
+        "LLMs · n8n · Ollama",
         "Disponível full-time",
       ],
       casesCta: "Ver projetos",
-      badge: "Back-end first",
+      badge: "Full Stack",
       available: "Disponível para contratação",
     },
     "en-US": {
-      role: "Full Stack · Backend-Focused",
+      role: "Full Stack Software Engineer",
       description:
-        "I build what keeps systems running: robust REST APIs, async queues (Laravel Horizon), real-time WebSocket and AI-powered automations with n8n. I also deliver clean frontends with React/Next.js.",
+        "From the database to the React component: REST APIs, async queues, real-time WebSocket and AI-powered automations, from LLMs in production to local models with Ollama.",
       result: "Systems that scale. Teams that ship faster.",
       pills: [
-        "Laravel · Node.js · PHP",
-        "Queues · WebSocket · APIs",
-        "n8n · OpenAI",
+        "React · Next.js · TypeScript",
+        "NestJS · Laravel · Node.js",
+        "LLMs · n8n · Ollama",
         "Open to full-time",
       ],
       casesCta: "See projects",
-      badge: "Backend-first",
+      badge: "Full Stack",
       available: "Open to hire",
     },
   } as const;
@@ -61,18 +61,16 @@ export function Hero() {
       id="home"
       className="relative min-h-screen flex items-center pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden"
     >
-      {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background via-primary/5 to-background" />
+      <div className="pointer-events-none absolute inset-0 bg-cyber-grid opacity-[0.12]" />
       <div className="pointer-events-none absolute -top-24 right-0 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full bg-secondary/10 blur-[100px]" />
 
-      <div className="container mx-auto px-4">
+      <div className="mx-auto w-full max-w-content px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          {/* ── Coluna esquerda: texto ── */}
           <div className="flex flex-col gap-8">
 
-            {/* Badge + status */}
             <motion.div
               className="flex items-center gap-3 flex-wrap"
               variants={fadeLeft(0)}
@@ -89,7 +87,6 @@ export function Hero() {
               </div>
             </motion.div>
 
-            {/* Nome + role */}
             <motion.div
               className="space-y-3"
               variants={fadeLeft(0.08)}
@@ -109,7 +106,6 @@ export function Hero() {
               </h2>
             </motion.div>
 
-            {/* Descrição */}
             <motion.div
               className="space-y-3"
               variants={fadeLeft(0.16)}
@@ -124,7 +120,6 @@ export function Hero() {
               </p>
             </motion.div>
 
-            {/* Pills */}
             <motion.div
               className="flex flex-wrap gap-2"
               variants={fadeLeft(0.22)}
@@ -141,7 +136,6 @@ export function Hero() {
               ))}
             </motion.div>
 
-            {/* CTAs */}
             <motion.div
               className="flex flex-wrap gap-3"
               variants={fadeLeft(0.28)}
@@ -175,7 +169,6 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* ── Coluna direita: foto + badges flutuantes ── */}
           <motion.div
             className="flex justify-center"
             variants={fadeRight(0.1)}
@@ -183,10 +176,8 @@ export function Hero() {
             animate="show"
           >
             <div className="relative">
-              {/* Anel decorativo */}
               <div className="absolute -inset-6 rounded-full bg-gradient-to-br from-primary/30 via-primary/5 to-secondary/20 blur-2xl" />
 
-              {/* Foto */}
               <div className="relative w-64 h-64 md:w-80 md:h-80">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-secondary/10" />
                 <Image
@@ -199,7 +190,6 @@ export function Hero() {
                 />
               </div>
 
-              {/* Badge flutuante — stack */}
               <motion.div
                 className="absolute -bottom-4 -right-2 md:-right-10 flex items-center gap-2.5 rounded-2xl border border-white/10 bg-background/90 backdrop-blur-xl px-4 py-3 shadow-xl"
                 initial={{ opacity: 0, scale: 0.85, y: 8 }}
@@ -208,12 +198,11 @@ export function Hero() {
               >
                 <Terminal className="h-4 w-4 text-primary shrink-0" />
                 <div>
-                  <p className="text-xs font-bold leading-none">Laravel · Node</p>
+                  <p className="text-xs font-bold leading-none">NestJS · Laravel</p>
                   <p className="text-[10px] text-muted-foreground mt-0.5">React · Next.js</p>
                 </div>
               </motion.div>
 
-              {/* Badge flutuante — disponibilidade */}
               <motion.div
                 className="absolute -top-4 -left-2 md:-left-10 flex items-center gap-2 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 backdrop-blur-xl px-4 py-3 shadow-xl"
                 initial={{ opacity: 0, scale: 0.85, y: -8 }}

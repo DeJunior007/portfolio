@@ -10,8 +10,8 @@ export function About() {
   const stats = [
     {
       icon: <Code className="h-8 w-8 text-primary" />,
-      value: "2+ anos",
-      label: language === "en-US" ? "Backend & APIs" : "Backend e APIs",
+      value: "3+ anos",
+      label: language === "en-US" ? "Full stack & APIs" : "Full stack e APIs",
     },
     {
       icon: <Briefcase className="h-8 w-8 text-primary" />,
@@ -31,36 +31,38 @@ export function About() {
           badge: "About me",
           title: "Who I am",
           intro:
-            "I'm a backend-focused fullstack engineer who builds the infrastructure that keeps products running — and delivers clean frontends so I don't create bottlenecks for other teams.",
+            "I'm a full stack software engineer who builds the infrastructure that keeps products running, and delivers clean frontends so I don't create bottlenecks for other teams.",
           summaryTitle: "My background",
           summary:
-            "I've spent the last 2+ years building APIs, async pipelines and real-time systems with Laravel/PHP and TypeScript/Node.js. I care deeply about system reliability: proper error handling, observability, predictable deploys and well-documented contracts.",
+            "I've spent the last few years building APIs, async pipelines and real-time systems with NestJS, Laravel/PHP and TypeScript/Node.js, plus AI-powered automations, from consuming LLM APIs to running local models with Ollama. I care deeply about system reliability: proper error handling, observability, predictable deploys and well-documented contracts.",
           case:
-            "Most recent case: built a central integration API connecting financial institutions, running credit simulations asynchronously in the background and streaming real-time updates via WebSocket. Eliminated tool-switching between systems and cut average service time.",
+            "Most recent case: at my current job I optimized AI-driven support automations, cutting response time by ~70%, and built async workers to handle high-volume video uploads without blocking the main app flow.",
           helpTitle: "What you get when you hire me",
           helpBullets: [
             "APIs that are consistent, documented and easy to consume",
             "Async flows (queues, workers) that don't block your UX",
             "Real-time features via WebSocket done right",
-            "A dev who talks to product and design — not just other devs",
+            "AI automations done right, from LLM APIs to local models with Ollama",
+            "A dev who talks to product and design, not just other devs",
           ],
         }
       : {
           badge: "Sobre mim",
           title: "Quem eu sou",
           intro:
-            "Sou engenheiro de software fullstack com foco em back-end — construo a infraestrutura que sustenta o produto e entrego interfaces funcionais para não criar gargalo no time.",
+            "Sou engenheiro de software full stack. Construo a infraestrutura que sustenta o produto e entrego interfaces funcionais para não criar gargalo no time.",
           summaryTitle: "Minha trajetória",
           summary:
-            "Nos últimos 2+ anos trabalhei com APIs, pipelines assíncronos e sistemas em tempo real usando Laravel/PHP e TypeScript/Node.js. Me importo com confiabilidade: tratamento de erros, observabilidade, deploy previsível e contratos bem definidos.",
+            "Nos últimos anos trabalhei com APIs, pipelines assíncronos e sistemas em tempo real usando NestJS, Laravel/PHP e TypeScript/Node.js, além de automações com IA, do consumo de APIs de LLM a modelos locais com Ollama. Me importo com confiabilidade: tratamento de erros, observabilidade, deploy previsível e contratos bem definidos.",
           case:
-            "Case mais recente: API central de integração com instituições financeiras, rodando simulações de crédito em background e transmitindo atualizações via WebSocket. Eliminou a alternância entre sistemas e reduziu o tempo médio de atendimento.",
-          helpTitle: "O que você ganha contratando eu",
+            "Case mais recente: no meu emprego atual, otimizei automações de atendimento com IA, reduzindo o tempo de resposta em ~70%, e construí workers assíncronos para upload de vídeos em grande volume sem travar o fluxo principal da aplicação.",
+          helpTitle: "O que você ganha ao me contratar",
           helpBullets: [
             "APIs consistentes, documentadas e fáceis de consumir",
             "Fluxos assíncronos (filas, workers) que não bloqueiam o UX",
             "WebSocket feito do jeito certo para features em tempo real",
-            "Um dev que fala com produto e design — não só com outros devs",
+            "Automações de IA feitas direito, de APIs de LLM a modelos locais com Ollama",
+            "Um dev que fala com produto e design, não só com outros devs",
           ],
         };
 
@@ -69,7 +71,7 @@ export function About() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background via-muted/50 to-background" />
       <div className="pointer-events-none absolute -left-16 top-20 h-72 w-72 rounded-full bg-primary/15 blur-3xl" />
       <div className="pointer-events-none absolute -right-24 bottom-10 h-80 w-80 rounded-full bg-secondary/20 blur-3xl" />
-      <div className="container mx-auto px-4">
+      <div className="mx-auto w-full max-w-content px-4">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -122,7 +124,7 @@ export function About() {
                 {stats.map((stat, index) => (
                   <div
                     key={index}
-                    className="p-6 rounded-2xl border border-white/10 bg-white/5 text-center backdrop-blur-2xl shadow-lg shadow-primary/10 transition-transform duration-300 hover:-translate-y-1"
+                    className="glow-card p-6 rounded-2xl border border-white/10 bg-white/5 text-center backdrop-blur-2xl shadow-lg shadow-primary/10 transition-transform duration-300 hover:-translate-y-1"
                   >
                     <div className="flex justify-center mb-4">{stat.icon}</div>
                     <h3 className="text-3xl font-bold mb-2">{stat.value}</h3>
@@ -131,7 +133,7 @@ export function About() {
                 ))}
               </div>
 
-              <div className="mt-2 rounded-2xl border border-primary/15 bg-primary/10 p-6 backdrop-blur-2xl shadow-lg shadow-primary/10">
+              <div className="glow-card mt-2 rounded-2xl border border-primary/15 bg-primary/10 p-6 backdrop-blur-2xl shadow-lg shadow-primary/10">
                 <h4 className="text-xl font-semibold mb-3">{copy.helpTitle}</h4>
                 <ul className="list-disc list-inside space-y-2 text-muted-foreground">
                   {copy.helpBullets.map((item) => (

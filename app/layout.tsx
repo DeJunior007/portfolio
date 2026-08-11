@@ -4,6 +4,9 @@ import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { LanguageProvider } from '@/components/language-provider';
 import { Toaster } from '@/components/ui/toaster';
+import { MouseGlow } from '@/components/effects/mouse-glow';
+import { DustField } from '@/components/effects/dust-field';
+import { CardGlowTracker } from '@/components/effects/card-glow-tracker';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,6 +32,10 @@ export default function RootLayout({
           enableSystem
         >
           <LanguageProvider defaultLanguage="pt-BR">
+            <div aria-hidden className="pointer-events-none fixed inset-0 -z-50 bg-noise opacity-[0.035] mix-blend-overlay" />
+            <DustField />
+            <MouseGlow />
+            <CardGlowTracker />
             {children}
             <Toaster />
           </LanguageProvider>
