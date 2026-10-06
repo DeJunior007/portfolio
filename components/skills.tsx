@@ -3,6 +3,7 @@
 import { useLanguage } from "@/components/language-provider";
 import { motion } from "framer-motion";
 import { Server, Database, Wrench, Layout, Bot } from "lucide-react";
+import { Certifications } from "@/components/certifications";
 
 const easing = [0.16, 1, 0.3, 1];
 
@@ -108,7 +109,6 @@ export function Skills() {
         "Git / GitHub",
         "CI/CD",
         "AWS (Amplify, S3)",
-        "AWS Certified AI Practitioner",
         "Linux",
         "Postman",
       ],
@@ -186,6 +186,8 @@ export function Skills() {
             </motion.div>
           ))}
         </div>
+
+        <Certifications />
 
       </div>
     </section>
