@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/components/language-provider";
 import { motion } from "framer-motion";
-import { Code, Briefcase } from "lucide-react";
+import { Code, Briefcase, Award } from "lucide-react";
 
 export function About() {
   const { language } = useLanguage();
@@ -29,9 +29,14 @@ export function About() {
             "I'm a full stack software engineer who builds the infrastructure that keeps products running, and delivers clean frontends so I don't create bottlenecks for other teams.",
           summaryTitle: "My background",
           summary:
-            "I've spent the last few years building APIs, async pipelines and real-time systems with NestJS, Laravel/PHP and TypeScript/Node.js, plus AI-powered automations, from consuming LLM APIs to running local models with Ollama. I care deeply about system reliability: proper error handling, observability, predictable deploys and well-documented contracts.",
+            "I work with microservices architecture, async processing and AI automation: TypeScript, React and Next.js on the front end; NestJS, Laravel and Node.js on the back end, with RabbitMQ messaging, Redis and deploys on Docker and Kubernetes. Before picking a technology, I find the bottleneck, and I use LLMs via API and local models (Ollama, Whisper) when they actually solve the problem.",
           case:
-            "Most recent case: at my current job I optimized AI-driven support automations, cutting response time by ~70%, and built async workers to handle high-volume video uploads without blocking the main app flow.",
+            "Most recent cases: at my current job I made Python image processing 6.9× faster with parallelism and cut n8n automation response time by ~70%. Before that, at NG Promotora, I took credit simulations from 5–16 min down to ~2 min with parallel queues and WebSocket.",
+          credentials: [
+            "AWS Certified AI Practitioner (AIF-C01)",
+            "Associate in Information Technology · UniCesumar (expected 02/2027)",
+            "Portuguese (native) · English (full professional proficiency)",
+          ],
           helpTitle: "What you get when you hire me",
           helpBullets: [
             "APIs that are consistent, documented and easy to consume",
@@ -48,9 +53,14 @@ export function About() {
             "Sou engenheiro de software full stack. Construo a infraestrutura que sustenta o produto e entrego interfaces funcionais para não criar gargalo no time.",
           summaryTitle: "Minha trajetória",
           summary:
-            "Nos últimos anos trabalhei com APIs, pipelines assíncronos e sistemas em tempo real usando NestJS, Laravel/PHP e TypeScript/Node.js, além de automações com IA, do consumo de APIs de LLM a modelos locais com Ollama. Me importo com confiabilidade: tratamento de erros, observabilidade, deploy previsível e contratos bem definidos.",
+            "Trabalho com arquitetura de microsserviços, processamento assíncrono e automação com IA: TypeScript, React e Next.js no front-end; NestJS, Laravel e Node.js no back-end, com mensageria (RabbitMQ), Redis e deploy em Docker e Kubernetes. Antes de escolher a tecnologia, encontro o gargalo, e uso LLMs via API e modelos locais (Ollama, Whisper) quando eles resolvem o problema.",
           case:
-            "Case mais recente: no meu emprego atual, otimizei automações de atendimento com IA, reduzindo o tempo de resposta em ~70%, e construí workers assíncronos para upload de vídeos em grande volume sem travar o fluxo principal da aplicação.",
+            "Cases mais recentes: no meu emprego atual, tornei o processamento de imagens em Python 6,9× mais rápido com paralelismo e reduzi em ~70% o tempo de resposta das automações no n8n. Antes disso, na NG Promotora, levei simulações de crédito de 5–16 min para ~2 min com filas paralelas e WebSocket.",
+          credentials: [
+            "AWS Certified AI Practitioner (AIF-C01)",
+            "CST em Tecnologia da Informação · UniCesumar (previsão 02/2027)",
+            "Português (nativo) · Inglês (proficiência profissional completa)",
+          ],
           helpTitle: "O que você ganha ao me contratar",
           helpBullets: [
             "APIs consistentes, documentadas e fáceis de consumir",
@@ -127,6 +137,15 @@ export function About() {
                   </div>
                 ))}
               </div>
+
+              <ul className="space-y-2">
+                {copy.credentials.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <Award className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
 
               <div className="glow-card mt-2 rounded-2xl border border-primary/15 bg-primary/10 p-6 backdrop-blur-2xl shadow-lg shadow-primary/10">
                 <h4 className="text-xl font-semibold mb-3">{copy.helpTitle}</h4>

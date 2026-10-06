@@ -22,83 +22,122 @@ const itemVariants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: easing } },
 };
 
+type FeaturedProject = {
+  title: string;
+  type: string;
+  status?: string;
+  description: string;
+  tags: string[];
+  highlight: string;
+  liveUrl?: string;
+  githubUrl?: string;
+};
+
+type OtherProject = {
+  title: string;
+  description: string;
+  tags: string[];
+  icon?: React.ReactNode;
+  url?: string;
+  liveUrl?: string;
+};
+
 export function Projects() {
   const { t, language } = useLanguage();
   const ptBR = language === "pt-BR";
 
-  const projects = ptBR
+  const projects: FeaturedProject[] = ptBR
     ? [
         {
-          title: "SmartCal",
-          type: "Case pessoal",
-          status: "Em produção",
+          title: "Ouri Joias",
+          type: "Sistema de gestão",
           description:
-            "Orquestração de LLM + visão computacional para ler fotos e textos e responder via WhatsApp. Backend com webhooks, filas assíncronas e Supabase para histórico de conversas.",
-          tags: ["Next.js", "TypeScript", "LLM", "Vision AI", "Supabase", "Webhooks"],
-          highlight: "Resposta de IA em segundos direto no WhatsApp",
-          liveUrl: "https://www.smartcal.com.br/",
-          githubUrl: "https://github.com/DeJunior007",
+            "Sistema de gestão para fábrica de joias: clientes, pedidos, controle de ouro, fechamento mensal, comissões e rankings. Arquitetura em dois serviços (auth e API), permissões granulares com trilha de auditoria, Redis, filas com RabbitMQ e componentes documentados em Storybook.",
+          tags: ["NestJS", "TypeScript", "RabbitMQ", "Redis", "PostgreSQL", "Storybook"],
+          highlight: "Permissões granulares com trilha de auditoria completa",
         },
         {
           title: "MultiVideos",
           type: "Case pessoal",
           status: "Uso pessoal em produção",
           description:
-            "Automatiza a publicação de vídeos em várias Páginas do Facebook: upload, transcrição e geração de legenda por IA rodando 100% self-hosted (Whisper + Ollama num modelo LFM2.5 local), sem depender de API paga de LLM. Fila de mensageria com RabbitMQ e workers assíncronos para transcodificação e publicação.",
+            "Transcrição, legendagem e publicação de vídeos em várias Páginas do Facebook, 100% self-hosted (Whisper + Ollama num modelo local), sem depender de API paga de LLM. Fila de mensageria com RabbitMQ e workers assíncronos para transcodificação e publicação.",
           tags: ["Laravel", "RabbitMQ", "Ollama", "Whisper", "Redis", "Next.js", "Docker"],
           highlight: "IA local com Ollama: zero custo de API por vídeo processado",
+        },
+        {
+          title: "SmartCal",
+          type: "Case pessoal",
+          description:
+            "Atendimento via WhatsApp automatizado com LLM e visão computacional: lê fotos e textos e responde em segundos. Backend com webhooks, filas assíncronas e Supabase para histórico de conversas.",
+          tags: ["Next.js", "TypeScript", "LLM", "Vision AI", "Supabase", "Webhooks"],
+          highlight: "Resposta de IA em segundos direto no WhatsApp",
+          githubUrl: "https://github.com/DeJunior007",
         },
       ]
     : [
         {
-          title: "SmartCal",
-          type: "Personal project",
-          status: "Live",
+          title: "Ouri Joias",
+          type: "Management system",
           description:
-            "LLM + vision orchestration to read photos and text, replying via WhatsApp. Backend with webhooks, async queues and Supabase for conversation history.",
-          tags: ["Next.js", "TypeScript", "LLM", "Vision AI", "Supabase", "Webhooks"],
-          highlight: "AI response in seconds straight to WhatsApp",
-          liveUrl: "https://www.smartcal.com.br/",
-          githubUrl: "https://github.com/DeJunior007",
+            "Management system for a jewelry factory: customers, orders, gold control, monthly closing, commissions and rankings. Two-service architecture (auth and API), granular permissions with an audit trail, Redis, RabbitMQ queues and components documented in Storybook.",
+          tags: ["NestJS", "TypeScript", "RabbitMQ", "Redis", "PostgreSQL", "Storybook"],
+          highlight: "Granular permissions with a full audit trail",
         },
         {
           title: "MultiVideos",
           type: "Personal project",
           status: "Personal use, in production",
           description:
-            "Automates publishing videos across multiple Facebook Pages: upload, transcription and AI caption generation running fully self-hosted (Whisper + Ollama on a local LFM2.5 model), no paid LLM API involved. Message queue with RabbitMQ and async workers for transcoding and publishing.",
+            "Transcription, captioning and publishing of videos across multiple Facebook Pages, fully self-hosted (Whisper + Ollama on a local model), no paid LLM API involved. Message queue with RabbitMQ and async workers for transcoding and publishing.",
           tags: ["Laravel", "RabbitMQ", "Ollama", "Whisper", "Redis", "Next.js", "Docker"],
           highlight: "Local AI with Ollama: zero API cost per video processed",
         },
+        {
+          title: "SmartCal",
+          type: "Personal project",
+          description:
+            "WhatsApp support automated with an LLM and computer vision: reads photos and text and replies in seconds. Backend with webhooks, async queues and Supabase for conversation history.",
+          tags: ["Next.js", "TypeScript", "LLM", "Vision AI", "Supabase", "Webhooks"],
+          highlight: "AI response in seconds straight to WhatsApp",
+          githubUrl: "https://github.com/DeJunior007",
+        },
       ];
 
-  const otherProjects = ptBR
+  const otherProjects: OtherProject[] = ptBR
     ? [
+        {
+          title: "Performance Tracker",
+          description:
+            "PWA offline-first para registro de performance: dados no IndexedDB (Dexie), Service Workers e fila de sincronização que resolve conflitos por updatedAt + clientId. Backend Express + MongoDB com schemas Zod compartilhados.",
+          tags: ["Next.js", "PWA", "IndexedDB", "Express", "MongoDB", "Zod"],
+          url: "https://github.com/DeJunior007/perfomance-tracker",
+        },
+        {
+          title: "Email Classifier",
+          description:
+            "Triagem de emails com IA: classifica como produtivo ou improdutivo e sugere resposta curta. Aceita texto, .txt ou .pdf e mostra tokens consumidos e tempo de resposta.",
+          tags: ["Python", "FastAPI", "OpenAI GPT-4o mini"],
+          url: "https://github.com/DeJunior007/Email-Classifier",
+        },
+        {
+          title: "RPG Anime Modpack",
+          description:
+            "Página de download do modpack do meu servidor (Forge, 76 mods) com wiki interativa dos mods (receitas, tutoriais, itens) servida do Supabase, e instalador em Python.",
+          tags: ["Next.js", "Tailwind CSS", "Framer Motion", "Supabase", "Python"],
+          url: "https://github.com/DeJunior007/aotmine",
+        },
         {
           title: "ScraperR",
           description:
             "Ferramenta pessoal de busca de vagas: scraping de LinkedIn/Indeed/Gupy, geração de material de candidatura com IA e dashboard próprio. Arquitetura poliglota em 4 repositórios com RabbitMQ e Redis.",
           tags: ["Laravel", "Python", "Next.js", "RabbitMQ"],
-          url: "https://github.com/DeJunior007/scraperr",
         },
         {
           title: "Wedding Platform",
           description:
             "Plataforma de casamento multi-tenant: RSVP, lista de presentes com pagamento via Mercado Pago e atualização em tempo real por WebSocket num serviço à parte na VPS.",
           tags: ["Next.js", "Supabase", "WebSocket", "Mercado Pago"],
-          url: "https://github.com/DeJunior007/wedding-platform",
-        },
-        {
-          title: "Fidelização & sorteio para varejo",
-          description:
-            "Freelance: cliente sobe a foto da nota fiscal, leitura de QR Code e validação automática via scraping geram cupons, com tela pública de sorteio ao vivo.",
-          tags: ["NestJS", "Prisma", "Python"],
-        },
-        {
-          title: "SaaS para estúdios de fotografia",
-          description:
-            "Freelance: plataforma multi-tenant com portal do cliente, autenticação via Keycloak e fluxo completo de contrato, seleção e entrega de fotos.",
-          tags: ["NestJS", "Prisma", "Keycloak"],
         },
         {
           title: "Servidores de jogos (hobby)",
@@ -110,30 +149,37 @@ export function Projects() {
       ]
     : [
         {
+          title: "Performance Tracker",
+          description:
+            "Offline-first PWA for logging performance data: IndexedDB storage (Dexie), Service Workers and a sync queue that resolves conflicts via updatedAt + clientId. Express + MongoDB backend with shared Zod schemas.",
+          tags: ["Next.js", "PWA", "IndexedDB", "Express", "MongoDB", "Zod"],
+          url: "https://github.com/DeJunior007/perfomance-tracker",
+        },
+        {
+          title: "Email Classifier",
+          description:
+            "AI email triage: classifies emails as productive or unproductive and suggests a short reply. Accepts pasted text, .txt or .pdf and shows tokens used and response time.",
+          tags: ["Python", "FastAPI", "OpenAI GPT-4o mini"],
+          url: "https://github.com/DeJunior007/Email-Classifier",
+        },
+        {
+          title: "RPG Anime Modpack",
+          description:
+            "Download page for my server's modpack (Forge, 76 mods) with an interactive mod wiki (recipes, tutorials, items) served from Supabase, plus a Python installer.",
+          tags: ["Next.js", "Tailwind CSS", "Framer Motion", "Supabase", "Python"],
+          url: "https://github.com/DeJunior007/aotmine",
+        },
+        {
           title: "ScraperR",
           description:
             "Personal job-hunting tool: scrapes LinkedIn/Indeed/Gupy, generates AI application material and a custom dashboard. Polyglot architecture across 4 repos with RabbitMQ and Redis.",
           tags: ["Laravel", "Python", "Next.js", "RabbitMQ"],
-          url: "https://github.com/DeJunior007/scraperr",
         },
         {
           title: "Wedding Platform",
           description:
             "Multi-tenant wedding platform: RSVP, gift registry with Mercado Pago payments and real-time WebSocket updates via a standalone VPS service.",
           tags: ["Next.js", "Supabase", "WebSocket", "Mercado Pago"],
-          url: "https://github.com/DeJunior007/wedding-platform",
-        },
-        {
-          title: "Retail loyalty & raffle platform",
-          description:
-            "Freelance: customers upload a receipt photo, QR Code parsing and automated scraping validate it and generate coupons, with a public live-raffle screen.",
-          tags: ["NestJS", "Prisma", "Python"],
-        },
-        {
-          title: "SaaS for photography studios",
-          description:
-            "Freelance: multi-tenant platform with a client portal, Keycloak authentication and a full contract, selection and delivery flow.",
-          tags: ["NestJS", "Prisma", "Keycloak"],
         },
         {
           title: "Game servers (hobby)",
@@ -151,45 +197,54 @@ export function Projects() {
           role: "Desenvolvedor Full Stack",
           period: "Mar 2026 – atual",
           description:
-            "Atuo em vários casos de uso: unifiquei APIs legadas em NestJS + Prisma (PostgreSQL) e otimizei automações de atendimento com LLMs, reduzindo o tempo de resposta em ~70%. Atualmente construindo um e-commerce em microsserviços, com integrações de checkout, mensageria entre serviços, idempotência e Redis para concorrência, com deploy via Kubernetes e GitOps (ArgoCD).",
-          tags: ["NestJS", "TypeScript", "Prisma", "Redis", "Microsserviços", "Kubernetes", "LLMs"],
-          highlight: "Automações com IA que cortaram ~70% do tempo de resposta",
+            "Tornei o processamento de imagens em Python 6,9× mais rápido com paralelismo e reduzi em ~70% o tempo de resposta das automações no n8n, cortando também consumo de tokens de LLM. Desenvolvi e-commerce em microsserviços com mensageria, idempotência e concorrência via Redis, redesenhei o upload em lote para eliminar estouros de memória, implementei Keycloak/OIDC e pagamentos via Mercado Pago. Entreguei uma plataforma de sorteios com validação automática de notas na SEFAZ e um CRM com contratos, financeiro e entrega de arquivos. Testes E2E com Jest e Playwright e CI/CD com Docker, Kubernetes e ArgoCD.",
+          tags: ["NestJS", "TypeScript", "React", "Next.js", "Python", "Redis", "Keycloak", "Kubernetes", "ArgoCD"],
+          highlight: "Processamento de imagens 6,9× mais rápido e automações ~70% mais rápidas",
         },
         {
           company: "NG Promotora",
-          role: "Desenvolvedor Full Stack (Estágio → Pleno)",
-          period: "Set 2024 – Dez 2025",
+          role: "Desenvolvedor Full Stack",
+          period: "Jan 2025 – Dez 2025",
           description:
-            "Comecei como estagiário e fui promovido a pleno. Projetei API central de integração com instituições financeiras, reestruturei simulações com Laravel Queues + Horizon e implementei WebSocket para resultados em tempo real. Automatizei atendimento no WhatsApp via n8n + Python, com OpenAI Vision para extrair dados de documentos.",
-          tags: ["Laravel/PHP", "TypeScript", "Queues/Horizon", "WebSocket", "n8n", "OpenAI Vision"],
-          highlight: "API central de integração financeira com WebSocket em produção",
+            "Identifiquei o gargalo das simulações: consultas a 8 bancos rodando de forma síncrona e sequencial. Projetei uma API central unificada com filas paralelas (Laravel Queues + Horizon) e resultados em tempo real via WebSocket. Automatizei o atendimento no WhatsApp com n8n e Python (qualificação, simulação e proposta), com OpenAI Vision para extrair dados de documentos. Dashboards analíticos em SQL e telas em TypeScript e Next.js.",
+          tags: ["Laravel/PHP", "Horizon", "WebSocket", "Next.js", "TypeScript", "n8n", "Python", "OpenAI Vision"],
+          highlight: "Simulações caíram de 5–16 min para até ~2 min",
+        },
+        {
+          company: "NG Promotora",
+          role: "Desenvolvedor Full Stack (Estágio)",
+          period: "Set 2024 – Dez 2024",
+          description:
+            "Automatizei com RPA a geração de contratos em um sistema bancário sem API pública. Desenvolvi funcionalidades do sistema interno em Laravel e Vue.js + Vuetify e mantive integrações com APIs REST externas.",
+          tags: ["RPA", "Laravel", "Vue.js", "Vuetify", "REST APIs"],
+          highlight: "15–20 min de trabalho manual eliminados por contrato, para 20 operadoras",
         },
         {
           company: "MSI Soluções",
-          role: "Desenvolvedor Back-End",
+          role: "Desenvolvedor Back-End (Estágio)",
           period: "Mar 2024 – Set 2024",
           description:
-            "APIs em PHP/Laravel para comunicação com ERP, rotinas em PL/pgSQL para regras de negócio críticas e manutenção do app mobile em Flutter para operações logísticas.",
+            "Integrei diversas plataformas externas ao ERP via APIs em Laravel/PHP, com fluxos ponta a ponta e consistência dos dados. Rotinas em PL/pgSQL no PostgreSQL para regras de negócio críticas e manutenção do app Flutter para logística em campo.",
           tags: ["PHP/Laravel", "PostgreSQL", "PL/pgSQL", "ERP", "Flutter"],
-          highlight: "Integrações ERP com banco relacional complexo",
+          highlight: "Integrações ERP ponta a ponta com consistência de dados",
         },
         {
           company: "Assert Tech",
-          role: "Desenvolvedor Front-End",
+          role: "Desenvolvedor Front-End (Estágio)",
           period: "Fev 2023 – Ago 2023",
           description:
-            "Apps em Next.js (SSR/SSG) focadas em SEO e conversão. Consumo de APIs REST para envio de leads a CRMs, com integrações documentadas em Postman.",
-          tags: ["Next.js", "REST APIs", "Tailwind CSS", "Postman"],
-          highlight: "Apps Next.js otimizadas para SEO e conversão",
+            "Sites e landing pages em Next.js (SSR/SSG) focados em SEO e conversão, com envio automático de leads para CRMs.",
+          tags: ["Next.js", "SSR/SSG", "SEO", "REST APIs", "Tailwind CSS"],
+          highlight: "Mais de 15 sites e landing pages entregues",
         },
         {
           company: "Compass.uol",
-          role: "Desenvolvedor Front-End",
+          role: "Desenvolvedor Front-End (Estágio)",
           period: "Nov 2022 – Abr 2023 · Remoto",
           description:
-            "Interfaces responsivas com React e TypeScript em um design system corporativo, com Styled Components. Metodologia Scrum com entregas contínuas e primeiro contato com AWS em projetos de grande porte.",
-          tags: ["React", "TypeScript", "Styled Components", "Scrum", "AWS"],
-          highlight: "Design system corporativo em projeto de grande porte",
+            "Programa de estágio em front-end no contexto AWS: interfaces em React (Hooks, Redux) e TypeScript com Styled Components e AWS Amplify, em time ágil (Scrum).",
+          tags: ["React", "Redux", "TypeScript", "Styled Components", "AWS Amplify", "Scrum"],
+          highlight: "Front-end React no ecossistema AWS",
         },
       ]
     : [
@@ -198,45 +253,54 @@ export function Projects() {
           role: "Full Stack Developer",
           period: "Mar 2026 – present",
           description:
-            "Working across several use cases: unified legacy APIs with NestJS + Prisma (PostgreSQL) and optimized support automations with LLMs, cutting response time by ~70%. Currently building an e-commerce in a microservices architecture, with checkout integrations, inter-service messaging, idempotency and Redis for concurrency, deployed via Kubernetes and GitOps (ArgoCD).",
-          tags: ["NestJS", "TypeScript", "Prisma", "Redis", "Microservices", "Kubernetes", "LLMs"],
-          highlight: "AI automations that cut response time by ~70%",
+            "Made Python image processing 6.9× faster through parallelism and cut n8n automation response time by ~70%, also reducing LLM token usage. Built a microservices e-commerce with messaging, idempotency and Redis-based concurrency control, redesigned batch upload to eliminate memory overflows, and implemented Keycloak/OIDC plus Mercado Pago payments. Shipped a raffle platform with automatic invoice validation against SEFAZ and a CRM with contracts, finance and file delivery. E2E tests with Jest and Playwright and CI/CD with Docker, Kubernetes and ArgoCD.",
+          tags: ["NestJS", "TypeScript", "React", "Next.js", "Python", "Redis", "Keycloak", "Kubernetes", "ArgoCD"],
+          highlight: "6.9× faster image processing and ~70% faster automations",
         },
         {
           company: "NG Promotora",
-          role: "Full Stack Developer (Intern → Mid-level)",
-          period: "Sep 2024 – Dec 2025",
+          role: "Full Stack Developer",
+          period: "Jan 2025 – Dec 2025",
           description:
-            "Started as an intern and got promoted to mid-level. Designed a central integration API connecting financial institutions, rebuilt simulations with Laravel Queues + Horizon and implemented WebSocket for real-time results. Automated WhatsApp support via n8n + Python, with OpenAI Vision for document data extraction.",
-          tags: ["Laravel/PHP", "TypeScript", "Queues/Horizon", "WebSocket", "n8n", "OpenAI Vision"],
-          highlight: "Central financial integration API with WebSocket in production",
+            "Found the simulation bottleneck: queries to 8 banks running synchronously and sequentially. Designed a unified central API with parallel queues (Laravel Queues + Horizon) and real-time results via WebSocket. Automated WhatsApp support with n8n and Python (qualification, simulation and proposal), using OpenAI Vision for document data extraction. Analytical SQL dashboards and full screens in TypeScript and Next.js.",
+          tags: ["Laravel/PHP", "Horizon", "WebSocket", "Next.js", "TypeScript", "n8n", "Python", "OpenAI Vision"],
+          highlight: "Simulations dropped from 5–16 min to ~2 min",
+        },
+        {
+          company: "NG Promotora",
+          role: "Full Stack Developer (Intern)",
+          period: "Sep 2024 – Dec 2024",
+          description:
+            "Automated contract generation with RPA on a banking system with no public API. Built features for the internal system in Laravel and Vue.js + Vuetify and maintained integrations with external REST APIs.",
+          tags: ["RPA", "Laravel", "Vue.js", "Vuetify", "REST APIs"],
+          highlight: "15–20 min of manual work removed per contract, for 20 operators",
         },
         {
           company: "MSI Soluções",
-          role: "Backend Developer",
+          role: "Backend Developer (Intern)",
           period: "Mar 2024 – Sep 2024",
           description:
-            "PHP/Laravel APIs for ERP communication, PL/pgSQL routines for critical business rules, and maintenance of the Flutter mobile app for logistics operations.",
+            "Integrated several external platforms into the ERP through Laravel/PHP APIs, with end-to-end flows and data consistency. PL/pgSQL routines in PostgreSQL for critical business rules and maintenance of the Flutter app for field logistics.",
           tags: ["PHP/Laravel", "PostgreSQL", "PL/pgSQL", "ERP", "Flutter"],
-          highlight: "ERP integrations with complex relational database",
+          highlight: "End-to-end ERP integrations with data consistency",
         },
         {
           company: "Assert Tech",
-          role: "Frontend Developer",
+          role: "Frontend Developer (Intern)",
           period: "Feb 2023 – Aug 2023",
           description:
-            "Next.js apps (SSR/SSG) focused on SEO and conversion. REST API consumption to send leads to CRMs, with integrations documented in Postman.",
-          tags: ["Next.js", "REST APIs", "Tailwind CSS", "Postman"],
-          highlight: "Next.js apps optimized for SEO and conversion",
+            "Websites and landing pages in Next.js (SSR/SSG) focused on SEO and conversion, with automatic lead delivery to CRMs.",
+          tags: ["Next.js", "SSR/SSG", "SEO", "REST APIs", "Tailwind CSS"],
+          highlight: "15+ websites and landing pages shipped",
         },
         {
           company: "Compass.uol",
-          role: "Frontend Developer",
+          role: "Frontend Developer (Intern)",
           period: "Nov 2022 – Apr 2023 · Remote",
           description:
-            "Responsive interfaces with React and TypeScript in a corporate design system, using Styled Components. Scrum methodology with continuous delivery and first hands-on experience with AWS on large-scale projects.",
-          tags: ["React", "TypeScript", "Styled Components", "Scrum", "AWS"],
-          highlight: "Corporate design system on a large-scale project",
+            "Front-end internship program in an AWS context: React (Hooks, Redux) and TypeScript interfaces with Styled Components and AWS Amplify, in an agile Scrum team.",
+          tags: ["React", "Redux", "TypeScript", "Styled Components", "AWS Amplify", "Scrum"],
+          highlight: "React front-end in the AWS ecosystem",
         },
       ];
 
@@ -293,10 +357,14 @@ export function Projects() {
                         <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary uppercase tracking-widest">
                           {project.type}
                         </span>
-                        <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                        <span className="text-xs text-muted-foreground">
-                          {project.status}
-                        </span>
+                        {project.status && (
+                          <>
+                            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                            <span className="text-xs text-muted-foreground">
+                              {project.status}
+                            </span>
+                          </>
+                        )}
                       </div>
 
                       <h3 className="text-2xl font-bold">{project.title}</h3>
@@ -360,17 +428,30 @@ export function Projects() {
                       {project.icon}
                       {project.title}
                     </h4>
-                    {project.url && (
-                      <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="shrink-0 text-muted-foreground group-hover:text-primary transition-colors"
-                        aria-label={project.title}
-                      >
-                        <Github className="h-4 w-4" />
-                      </a>
-                    )}
+                    <div className="flex shrink-0 items-center gap-2">
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                          aria-label={`${project.title} (site)`}
+                        >
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      )}
+                      {project.url && (
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                          aria-label={`${project.title} (GitHub)`}
+                        >
+                          <Github className="h-4 w-4" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed flex-1">
                     {project.description}

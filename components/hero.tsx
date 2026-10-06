@@ -183,7 +183,7 @@ export function Hero() {
                 <Image
                   width={320}
                   height={320}
-                  src="https://i.ibb.co/4Z3B3tGN/Deilton.jpg"
+                  src="/deilton.jpg"
                   alt="Deilton Pedro Junior"
                   className="absolute inset-3 rounded-full object-cover border-2 border-white/10 shadow-2xl"
                   priority
